@@ -17,7 +17,7 @@ class ScoreCard(Turtle):
 
     def load_high_score(self):
         try:
-            with open(HIGH_SCORE_FILE, "r") as file:
+            with open(HIGH_SCORE_FILE) as file:
                 return int(file.read())
         except (FileNotFoundError, ValueError):
             return 0

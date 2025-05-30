@@ -4,20 +4,28 @@ from scorecard import ScoreCard
 from food import Food
 from game import Game
 import time
-run=True
-screen = Screen()
+# run=1
+
+
 def reload():
+    global run
+    # run+=1
+    screen = Screen()
+    print("Reloading...screen")
     screen.clear()
     snake = Snake()
     scorecard = ScoreCard()
     food = Food()
-    game = Game(screen,snake,food,scorecard)
+    game = Game(screen,snake,food,scorecard,reload)
     game.setup_screen()
+    # game.run = run
     snake.game = game
-    game.move()
-    screen.onkey(reload, "r")
+    game.move(True)
+    screen.onkey(game.pause_game, "p")
+    screen.onkey(game.unpause_game, "c")
+    screen.exitonclick()
+
 
 reload()
 
 
-screen.exitonclick()
